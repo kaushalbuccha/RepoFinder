@@ -53,9 +53,10 @@ class RepoDetailsActivity : AppCompatActivity() {
         try {
             val contributors = RetrofitInstance.apiService.getContributors(contributorsUrl)
             displayContributors(contributors)
-        } catch (e: Exception) {
+        }
+        catch (e: Exception) {
             //Log.e("RepoDetailsActivity", "Error fetching contributors: ${e.message}", e)
-            Toast.makeText(this, "Error fetching contributors: ${e.message}", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, "Error fetching contributors: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -69,9 +70,4 @@ class RepoDetailsActivity : AppCompatActivity() {
             Toast.makeText(this, "No contributors found", Toast.LENGTH_SHORT).show()
         }
     }
-//    private fun setupContributorsRecyclerView(contributors: List<Contributor>) {
-//        val adapter = ContributorAdapter(contributors)
-//        binding.rvContributors.layoutManager = LinearLayoutManager(this)
-//        binding.rvContributors.adapter = adapter
-//    }
 }
