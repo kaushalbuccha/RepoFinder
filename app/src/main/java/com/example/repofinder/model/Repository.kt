@@ -7,5 +7,6 @@ data class Repository(
     val name: String,
     val description: String?,
     val html_url: String,
-    val owner: Owner
+    val owner: Owner,
+    val contributors_url: String
 ): Serializable

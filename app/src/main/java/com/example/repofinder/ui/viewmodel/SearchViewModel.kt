@@ -1,5 +1,6 @@
 package com.example.repofinder.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,12 @@ class SearchViewModel(private val repository: RepositoryRepository) : ViewModel(
     }
 
     fun getSavedRepositories(): LiveData<List<RepositoryEntity>> {
-        return repository.getSavedRepositories()
+        return repository.getSavedRepositories().apply {
+            observeForever { repositoryEntities ->
+                repositoryEntities.forEach {
+                    Log.d("SAVED REPO","Saved Repo: ${it.name}, ${it.ownerLogin}, ${it.html_url}")
+                }
+            }
+        }
     }
 }

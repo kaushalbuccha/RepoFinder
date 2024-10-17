@@ -8,10 +8,22 @@
     android:orientation="vertical"
     tools:context=".ui.view.MainActivity">
 
-    <SearchView
-        android:id="@+id/searchView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="365dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/btn_view_saved_repositories"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:src="@drawable/baseline_download_24"
+        android:contentDescription="View Saved Repositories"
+        android:layout_gravity="center" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

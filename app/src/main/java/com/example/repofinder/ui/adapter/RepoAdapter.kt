@@ -1,5 +1,6 @@
 package com.example.repofinder.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.repofinder.R
 import com.example.repofinder.model.Repository
 
-class RepoAdapter(private val onClick: (Repository) -> Unit) :
+class RepoAdapter(private val onClick: ((Repository) -> Unit)?=null) :
     ListAdapter<Repository, RepoAdapter.RepoViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
@@ -20,13 +21,16 @@ class RepoAdapter(private val onClick: (Repository) -> Unit) :
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val repo = getItem(position)
-        holder.bind(repo, onClick)
+        if (onClick != null) {
+            holder.bind(repo, onClick)
+        }
     }
 
     class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(repo: Repository, onClick: (Repository) -> Unit) {
+        fun bind(repo: Repository, onClick: ((Repository) -> Unit)?) {
+            Log.d("REPO NAME",repo.name)
             itemView.findViewById<TextView>(R.id.repo_name).text = repo.name
-            itemView.setOnClickListener { onClick(repo) }
+            itemView.setOnClickListener { onClick?.invoke(repo) }
         }
     }
 

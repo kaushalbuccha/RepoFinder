@@ -2,6 +2,7 @@ package com.example.repofinder.ui.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -23,11 +24,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val savedRepo = findViewById<ImageView>(R.id.btn_view_saved_repositories)
+        savedRepo.setOnClickListener {
+            startActivity(Intent(this,SavedRepositoriesActivity::class.java))
+        }
+
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         adapter = RepoAdapter { repository ->
-            // Open Repo Details Activity
             val intent = Intent(this, RepoDetailsActivity::class.java)
-            intent.putExtra("REPO", repository)
+            intent.putExtra("REPO_DETAILS", repository)
             startActivity(intent)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
